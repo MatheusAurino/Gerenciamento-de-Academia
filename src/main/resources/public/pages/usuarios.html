@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Usuários</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2><i class="bi bi-people-fill"></i> Lista de Usuários</h2>
+            <div>
+                <a href="/adm" class="btn btn-secondary me-2">Voltar</a>
+                <a href="/adm/usuarios/novo" class="btn btn-success"><i class="bi bi-plus-lg"></i> Novo Usuário</a>
+            </div>
+        </div>
+
+        <div class="card shadow-sm">
+            <div class="card-body p-0">
+                <table class="table table-striped table-hover mb-0">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>CPF</th>
+                            <th>Tipo</th>
+                            <th class="text-end">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <#list usuarios as u>
+                        <tr>
+                            <td>${u.id_usuario}</td>
+                            <td>${u.nome}</td>
+                            <td>${u.cpf}</td>
+                            <td>
+                                <span class="badge 
+                                    <#if u.tipo == 'ADM'>bg-danger
+                                    <#elseif u.tipo == 'INSTRUTOR'>bg-warning text-dark
+                                    <#else>bg-info text-dark</#if>">
+                                    ${u.tipo}
+                                </span>
+                            </td>
+                            <td class="text-end">
+                                <a href="/adm/usuarios/editar/${u.id_usuario}" class="btn btn-sm btn-primary">
+                                    <i class="bi bi-pencil"></i> Editar
+                                </a>
+                                <a href="/adm/usuarios/deletar/${u.id_usuario}" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir este usuário?');">
+                                    <i class="bi bi-trash"></i> Excluir
+                                </a>
+                            </td>
+                        </tr>
+                        <#else>
+                        <tr>
+                            <td colspan="5" class="text-center py-4 text-muted">
+                                Nenhum usuário cadastrado.
+                            </td>
+                        </tr>
+                        </#list>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
