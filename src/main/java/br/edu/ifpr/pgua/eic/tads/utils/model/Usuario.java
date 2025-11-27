@@ -16,7 +16,6 @@ public class Usuario {
         this.tipo = tipo;
     }
 
-
     public String getId_usuario() {
         return id_usuario;
     }
@@ -36,8 +35,6 @@ public class Usuario {
     public String getTipo() {
         return tipo;
     }
-
-
 
     public void setId_usuario(String id_usuario) {
         this.id_usuario = id_usuario;
