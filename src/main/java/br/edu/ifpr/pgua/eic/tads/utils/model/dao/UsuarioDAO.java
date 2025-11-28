@@ -9,8 +9,7 @@ import java.util.List;
 import br.edu.ifpr.pgua.eic.tads.utils.model.Usuario;
 
 public class UsuarioDAO {
-
-    private Connection con;
+    private final Connection con;
 
     public UsuarioDAO(Connection con) {
         this.con = con;
@@ -30,12 +29,12 @@ public class UsuarioDAO {
             return true;
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println("Erro ao atualizar usuário: " + e.getMessage());
             return false;
         }
     }
 
-    // LISTAR TUDO
+    // Listar todos os usuarios
     public List<Usuario> findAll() {
         String sql = "SELECT * FROM bd_usuario";
         List<Usuario> lista = new ArrayList<>();
@@ -55,7 +54,7 @@ public class UsuarioDAO {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println("Erro ao listar usuários: " + e.getMessage());
         }
 
         return lista;
@@ -83,7 +82,7 @@ public class UsuarioDAO {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println("Erro ao buscar usuário por ID: " + e.getMessage());
         }
 
         return null;
@@ -104,7 +103,7 @@ public class UsuarioDAO {
             return true;
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println("Erro ao atualizar usuário: " + e.getMessage());
             return false;
         }
     }
@@ -127,7 +126,7 @@ public class UsuarioDAO {
             return true;
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println("Erro ao deletar usuário: " + e.getMessage());
             return false;
         }
     }
@@ -152,7 +151,7 @@ public class UsuarioDAO {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println("Erro ao buscar usuário por CPF e senha: " + e.getMessage());
         }
 
         return null;

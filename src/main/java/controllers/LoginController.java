@@ -24,15 +24,9 @@ public class LoginController {
                 String tipo = usuario.getTipo().toLowerCase();
 
                 switch (tipo) {
-                    case "adm":
-                        ctx.redirect("/adm");
-                        break;
-                    case "instrutor":
-                        ctx.redirect("/instrutor");
-                        break;
-                    default:
-                        ctx.redirect("/aluno");
-                        break;
+                    case "adm" -> ctx.redirect("/adm");
+                    case "instrutor" -> ctx.redirect("/instrutor");
+                    default -> ctx.redirect("/aluno");
                 }
             } else {
                 ctx.result("Erro: CPF ou Senha inválidos.");
@@ -40,7 +34,7 @@ public class LoginController {
 
         } catch (Exception e) {
             ctx.result("Erro interno no servidor: " + e.getMessage());
-            e.printStackTrace();
+            ctx.status(500);
         }
     };
 }
