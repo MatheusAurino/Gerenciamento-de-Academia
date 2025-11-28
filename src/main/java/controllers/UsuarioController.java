@@ -16,7 +16,6 @@ public class UsuarioController {
         this.dao = dao;
     }
 
-<<<<<<< HEAD
     public Handler criarUsuario = ctx -> {
         try {
             String nome = ctx.formParam("nome");
@@ -46,8 +45,6 @@ public class UsuarioController {
         }
     };
     
-=======
->>>>>>> dc467a99153ff88f92afc673895ad57e1200889f
     public Handler listarUsuarios = ctx -> {
         List<Usuario> lista = dao.findAll();
 
@@ -102,11 +99,7 @@ public class UsuarioController {
 
             if (sucesso) {
                 ctx.redirect("/adm/usuarios");
-<<<<<<< HEAD
             } else  {
-=======
-            } else {
->>>>>>> dc467a99153ff88f92afc673895ad57e1200889f
                 ctx.result("Falha ao editar o usuário.");
             }
         } catch (Exception e) {
