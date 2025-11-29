@@ -16,6 +16,35 @@ public class UsuarioController {
         this.dao = dao;
     }
 
+    public Handler criarUsuario = ctx -> {
+        try {
+            String nome = ctx.formParam("nome");
+            String cpf = ctx.formParam("cpf");
+            String senha = ctx.formParam("senha");
+            String tipo = ctx.formParam("tipo");
+
+            Usuario usuario = new Usuario(null, nome, cpf, senha, tipo);
+            boolean sucesso = dao.create(usuario);
+
+            if (sucesso) {
+                ctx.redirect("/adm/usuarios");
+            } else {
+                ctx.result("Falha ao criar o usuário.");
+            }
+        } catch (Exception e) {
+            ctx.result("Erro ao processar criação: " + e.getMessage());
+        }
+    };
+
+    public Handler exibirFormularioCriacao = ctx -> {
+        try {
+            Map<String, Object> model = new HashMap<>();
+            ctx.render("pages/criar-usuario.html", model);
+        } catch (NumberFormatException e) {
+            ctx.result("ID inválido: " + e.getMessage());
+        }
+    };
+    
     public Handler listarUsuarios = ctx -> {
         List<Usuario> lista = dao.findAll();
 
@@ -70,7 +99,7 @@ public class UsuarioController {
 
             if (sucesso) {
                 ctx.redirect("/adm/usuarios");
-            } else {
+            } else  {
                 ctx.result("Falha ao editar o usuário.");
             }
         } catch (Exception e) {

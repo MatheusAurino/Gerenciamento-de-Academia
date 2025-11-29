@@ -38,7 +38,9 @@ public class App {
             app.get("/adm/usuarios/deletar/{id}", usuarioController.deletarUsuario);
             app.get("/adm/usuarios/editar/{id}", usuarioController.exibirFormularioEdicao);
             app.post("/adm/usuarios/editar", usuarioController.editarUsuario);
-
+            app.post("/adm/usuarios/novo", usuarioController.criarUsuario);
+            app.get("/adm/usuarios/novo", usuarioController.exibirFormularioCriacao);
+            
             // Rotas de Planos
             app.get("/adm/planos", planoController.listarPlanos);
             app.get("/adm/planos/novo", planoController.exibirFormularioCriacao);
