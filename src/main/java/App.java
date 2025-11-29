@@ -2,9 +2,11 @@ import java.sql.SQLException;
 
 import br.edu.ifpr.pgua.eic.tads.utils.JavalinUtils;
 import br.edu.ifpr.pgua.eic.tads.utils.model.FabricaConexoes;
+import br.edu.ifpr.pgua.eic.tads.utils.model.dao.ExercicioDAO;
 import br.edu.ifpr.pgua.eic.tads.utils.model.dao.PlanoDAO;
 import br.edu.ifpr.pgua.eic.tads.utils.model.dao.UsuarioDAO;
 import controllers.AdminController;
+import controllers.ExercicioController;
 import controllers.LoginController;
 import controllers.PlanoController;
 import controllers.UsuarioController;
@@ -21,6 +23,9 @@ public class App {
 
             PlanoDAO planoDAO = new PlanoDAO(FabricaConexoes.obterConexao());
             PlanoController planoController = new PlanoController(planoDAO);
+
+            ExercicioDAO exercicioDAO = new ExercicioDAO(FabricaConexoes.obterConexao());
+            ExercicioController exercicioController = new ExercicioController(exercicioDAO);
 
             app.get("/", new controllers.IndexController().get);
             app.post("/home", loginController.autenticar);
@@ -41,6 +46,22 @@ public class App {
             app.get("/adm/planos/editar/{id}", planoController.exibirFormularioEdicao);
             app.post("/adm/planos/editar", planoController.editarPlano);
             app.get("/adm/planos/deletar/{id}", planoController.deletarPlano);
+
+            // Rotas de Exercícios (Admin)
+            app.get("/adm/exercicios", exercicioController.listarExercicios);
+            app.get("/adm/exercicios/novo", exercicioController.exibirFormularioCriacao);
+            app.post("/adm/exercicios/criar", exercicioController.criarExercicio);
+            app.get("/adm/exercicios/editar/{id}", exercicioController.exibirFormularioEdicao);
+            app.post("/adm/exercicios/editar", exercicioController.editarExercicio);
+            app.get("/adm/exercicios/deletar/{id}", exercicioController.deletarExercicio);
+
+            // Rotas de Exercícios (Instrutor)
+            app.get("/instrutor/exercicios", exercicioController.listarExercicios);
+            app.get("/instrutor/exercicios/novo", exercicioController.exibirFormularioCriacao);
+            app.post("/instrutor/exercicios/criar", exercicioController.criarExercicio);
+            app.get("/instrutor/exercicios/editar/{id}", exercicioController.exibirFormularioEdicao);
+            app.post("/instrutor/exercicios/editar", exercicioController.editarExercicio);
+            app.get("/instrutor/exercicios/deletar/{id}", exercicioController.deletarExercicio);
 
             app.get("/instrutor", new controllers.InstrutorController().dashinstrutor);
             app.get("/aluno", new controllers.AlunoController().dashaluno);

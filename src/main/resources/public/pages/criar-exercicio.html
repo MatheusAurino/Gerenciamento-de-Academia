@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Criar Exercício</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
+    />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2><i class="bi bi-plus-circle"></i> Criar Novo Exercício</h2>
+        <a href="/adm/exercicios" class="btn btn-secondary">
+          <i class="bi bi-arrow-left"></i> Voltar
+        </a>
+      </div>
+
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <form action="/adm/exercicios/criar" method="POST">
+            <!-- Nome do Exercício -->
+            <div class="mb-3">
+              <label for="nome" class="form-label">
+                <i class="bi bi-card-heading"></i> Nome do Exercício *
+              </label>
+              <input
+                type="text"
+                class="form-control"
+                id="nome"
+                name="nome"
+                maxlength="100"
+                placeholder="Ex: Supino Reto, Agachamento Livre"
+                required
+              />
+              <small class="text-muted">Máximo 100 caracteres</small>
+            </div>
+
+            <!-- Grupo Muscular -->
+            <div class="mb-3">
+              <label for="grupo_muscular" class="form-label">
+                <i class="bi bi-heart-pulse"></i> Grupo Muscular *
+              </label>
+              <select
+                class="form-select"
+                id="grupo_muscular"
+                name="grupo_muscular"
+                required
+              >
+                <option value="">Selecione...</option>
+                <option value="Peito">Peito</option>
+                <option value="Costas">Costas</option>
+                <option value="Pernas">Pernas</option>
+                <option value="Ombros">Ombros</option>
+                <option value="Braços">Braços</option>
+                <option value="Abdômen">Abdômen</option>
+                <option value="Cardio">Cardio</option>
+                <option value="Corpo Inteiro">Corpo Inteiro</option>
+              </select>
+            </div>
+
+            <!-- Botões -->
+            <div class="d-flex justify-content-end gap-2 mt-4">
+              <a href="/adm/exercicios" class="btn btn-secondary">
+                <i class="bi bi-x-circle"></i> Cancelar
+              </a>
+              <button type="submit" class="btn btn-success">
+                <i class="bi bi-check-circle"></i> Salvar Exercício
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="alert alert-info mt-3">
+        <i class="bi bi-info-circle"></i>
+        <strong>Dica:</strong> Certifique-se de preencher todos os campos
+        obrigatórios marcados com *.
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
